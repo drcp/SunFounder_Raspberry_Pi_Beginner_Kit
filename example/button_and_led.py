@@ -12,7 +12,9 @@ def setup():
     RELEASED = 1
     
     GPIO.setmode(GPIO.BCM)
-    GPIO.setup(led_pin, GPIO.OUT, GPIO.HIGH)
+#   GPIO.setup(led_pin, GPIO.OUT, GPIO.HIGH) was original code without initial parameter
+    GPIO.setup(led_pin, GPIO.OUT, initial=GPIO.HIGH)
+
     GPIO.setup(button_pin, GPIO.IN, GPIO.PUD_UP)
     GPIO.add_event_detect(button_pin, GPIO.BOTH, check_button, bouncetime=20)
 
@@ -34,7 +36,7 @@ def check_button(channel):
 # Main function
 def main():
     while True:
-        print "I'm so boring, doing nothing in main function."
+        print( "I'm so boring, doing nothing in main function.")
         time.sleep(3)
 
 # "Destroy" everything before stopping the script
