@@ -14,7 +14,7 @@ def my_callback(channel):
         print("Button Pressed!")
 
 # Define a edge detection
-# GPIO.add_event_detect(button_pin, GPIO.BOTH, my_callback, bouncetime=20)
+GPIO.add_event_detect(button_pin, GPIO.BOTH, my_callback, bouncetime=20)
 
 while True:
     print("I'm so boring, nothing left to do.")

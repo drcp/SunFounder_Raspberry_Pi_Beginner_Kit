@@ -7,3 +7,4 @@ led.blink()
 
 #   GPIO.cleanup()
 led.close()
+print("This is the end")
