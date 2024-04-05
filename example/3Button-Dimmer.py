@@ -158,38 +158,4 @@ except KeyboardInterrupt:
     GPIO.cleanup()
     print("Alls good in the neighborhood")
 
-""" 
-# setup loop to run button script.
-try:
-    while True:
-        # if red button is pressed toggle rLED on/off      
-        # read red in pin
-        bRedState = GPIO.input(rPin)
-        print("button red state: "+ str(bRedState))
-        if bRedState == True and bRedStateOld == False:
-            # Output to turn on rLED on if off or reverse
-        #    bRedStateOld = not bRedState
-            GPIO.output(REDoutPin,redLEDstate)
-            # switch led state
-            redLEDstate = not redLEDstate
-        bRedStateOld = bRedState
 
-        #      #Blue next
-        bBlueState = GPIO.input(bPin)
-        print("button blue state: "+ str(bBlueState))
-        if bBlueState == True and bBlueStateOld == False:
-        #      Output to turn on rLED on if off or reverse
-        #     bRedStateOld = not bBlueState
-            GPIO.output(BLUEoutPin,blueLEDstate)
-            blueLEDstate = not blueLEDstate
-        bBlueStateOld = bBlueState
-        #     #Now green
-        bGreenState = GPIO.input(gPin)
-        print("button green state: "+ str(bGreenState))
-        if bGreenState == True and bGreenStateOld == False:
-            # Output to turn on rLED on if off or reverse
-            GPIO.output(GREENoutPin,greenLEDstate) 
-            greenLEDstate = not greenLEDstate
-        bGreenStateOld = bGreenState  
-        sleep(delay)
- """
