@@ -1,0 +1,74 @@
+import RPi.GPIO as GPIO
+import time
+
+# Set up GPIO pins
+GPIO.setmode(GPIO.BOARD)
+REDoutPin = 11  # Red LED pin
+BLUEoutPin = 12  # Blue LED pin
+GREENoutPin = 13  # Green LED pin
+GPIO.setup([REDoutPin, GREENoutPin, BLUEoutPin], GPIO.OUT)
+
+rPin, bPin, gPin = 40, 37, 38  # Button pins
+GPIO.setup([rPin, bPin, gPin], GPIO.IN, pull_up_down=GPIO.PUD_UP)
+
+# Initialize PWM
+rPWM = GPIO.PWM(REDoutPin, 100)
+bPWM = GPIO.PWM(BLUEoutPin, 100)
+gPWM = GPIO.PWM(GREENoutPin, 100)
+rPWM.start(0)
+bPWM.start(0)
+gPWM.start(0)
+
+# Initialize LED states
+redLEDstate, blueLEDstate, greenLEDstate = 0, 0, 0
+
+# Red function to step LED brightness
+def rStepLED():
+    global redLEDstate
+    redLEDstate += 10
+    if redLEDstate > 100:
+        redLEDstate = 0
+    rPWM.ChangeDutyCycle(redLEDstate)
+# Blue function to step LED brightness
+def bStepLED():
+    global blueLEDstate
+    blueLEDstate += 10
+    if blueLEDstate > 100:
+        blueLEDstate = 0
+    bPWM.ChangeDutyCycle(blueLEDstate)
+    # Green function to step LED brightness
+def gStepLED():
+    global greenLEDstate
+    greenLEDstate += 10
+    if greenLEDstate > 100:
+        greenLEDstate = 0
+    gPWM.ChangeDutyCycle(greenLEDstate)
+
+# Function to handle button press for red LED
+def handle_red_button():
+    if GPIO.input(rPin) == GPIO.LOW:  # Assuming active low
+        rStepLED()
+        time.sleep(0.1)  # Debounce delay
+    # Function to handle button press for blue LED
+def handle_blue_button():
+    if GPIO.input(bPin) == GPIO.LOW:  # Assuming active low
+        bStepLED()
+        time.sleep(0.1)  # Debounce delay
+# Function to handle button press for green LED
+def handle_green_button():
+    if GPIO.input(gPin) == GPIO.LOW:  # Assuming active low
+        gStepLED()
+        time.sleep(0.1)  # Debounce delay        
+
+# Main loop
+try:
+    while True:
+        handle_red_button()
+        handle_blue_button()
+        handle_green_button()
+except KeyboardInterrupt:
+    # Cleanup
+    rPWM.stop()
+    bPWM.stop()
+    gPWM.stop()
+    GPIO.cleanup()

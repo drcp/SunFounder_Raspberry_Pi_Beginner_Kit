@@ -63,6 +63,7 @@ def set_led_value(value):    # Define a function
  """
 # function to step rLED up till it goes past 100 then goes to 0
 def rStepLED(redLEDstate):
+    global redLEDstate
     #if x is between 0 - 100 step up if > 100 go to zero
     # x is the DC
     redLEDstate = 10 + redLEDstate
