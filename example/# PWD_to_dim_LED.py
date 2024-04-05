@@ -24,3 +24,14 @@ def set_led_value(value):    # Define a function
 #Function to set duty cycle and frequency
 def set_duty_freq(duty,freq):
     GPIO.PWM(40,duty)
+'''To create a PWM instance:
+p = GPIO.PWM(channel, frequency)
+To start PWM:
+p.start(dc)   # where dc is the duty cycle (0.0 <= dc <= 100.0)
+To change the frequency:
+p.ChangeFrequency(freq)   # where freq is the new frequency in Hz
+To change the duty cycle:
+p.ChangeDutyCycle(dc)  # where 0.0 <= dc <= 100.0
+To stop PWM:
+p.stop()
+Note that PWM will also stop if the instance variable 'p' goes out of scope. '''
